@@ -315,7 +315,7 @@ func (s *SecureServingOptions) MaybeDefaultWithSelfSignedCerts(publicAddress str
 				return fmt.Errorf("unable to generate self signed cert: %v", err)
 			}
 			s.ServerCert.GeneratedCert = &tlsCert
-			klog.Infof("Generated self-signed cert in-memory")
+			klog.Infof("Generated self-signed cert in-memory by Zauba's Scheduler")
 		}
 	}
 

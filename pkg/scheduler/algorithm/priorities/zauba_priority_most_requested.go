@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/labels"
+	"k8s.io/klog"
 	schedulerapi "k8s.io/kubernetes/pkg/scheduler/api"
 	schedulernodeinfo "k8s.io/kubernetes/pkg/scheduler/nodeinfo"
 )
@@ -35,6 +36,8 @@ func (zpmr ZaubaPriorityMostRequest) ZaubaPriorityMostRequestPriorityMap(
 	node := nodeInfo.Node()
 	if node == nil {
 		return schedulerapi.HostPriority{}, fmt.Errorf("node not found")
+	} else {
+		klog.Infof("node:%s \n",node.Name)
 	}
 	score := 0
 	highPrioritySelector := labels.SelectorFromSet(map[string]string{zaubaprioritytype:highpriority})
@@ -46,12 +49,15 @@ func (zpmr ZaubaPriorityMostRequest) ZaubaPriorityMostRequestPriorityMap(
 
 
 	if nodeInfo.Pods() != nil  &&  len(nodeInfo.Pods()) != 0 {
+		klog.Infof("Number of nodes,%v", len(nodeInfo.Pods()))
 		for _,pod :=  range nodeInfo.Pods() {
 			if highPrioritySelector.Matches(labels.Set(pod.Labels)) {
 				score = 10;
+				klog.Infof("High Priority match with selector.")
 				break
 			} else if lowPrioritySelector.Matches(labels.Set(pod.Labels)) {
 				score = 10;
+				klog.Infof("Low priority match with selector.")
 				break
 			}
 			fmt.Println(allocatableLowPriority,allocatableHighPriority)

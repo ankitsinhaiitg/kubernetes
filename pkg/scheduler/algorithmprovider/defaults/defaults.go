@@ -109,12 +109,13 @@ func defaultPriorities() sets.String {
 	return sets.NewString(
 		priorities.SelectorSpreadPriority,
 		priorities.InterPodAffinityPriority,
-		priorities.LeastRequestedPriority,
+		//priorities.LeastRequestedPriority,
 		priorities.BalancedResourceAllocation,
 		priorities.NodePreferAvoidPodsPriority,
 		priorities.NodeAffinityPriority,
 		priorities.TaintTolerationPriority,
 		priorities.ImageLocalityPriority,
+		priorities.ZaubaPriorityMostRequestPriority,
 	)
 }
 

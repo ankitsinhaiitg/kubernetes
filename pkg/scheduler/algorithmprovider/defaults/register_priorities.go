@@ -86,6 +86,8 @@ func init() {
 	// TODO: Figure out a better way to do this, maybe at same time as fixing #24720.
 	factory.RegisterPriorityFunction2(priorities.NodePreferAvoidPodsPriority, priorities.CalculateNodePreferAvoidPodsPriorityMap, nil, 10000)
 
+	factory.RegisterPriorityFunction2(priorities.ZaubaPriorityMostRequestPriority,priorities.NewZaubaPriorityMostRequest().ZaubaPriorityMostRequestPriorityMap,nil,10000)
+
 	// Prioritizes nodes that have labels matching NodeAffinity
 	factory.RegisterPriorityFunction2(priorities.NodeAffinityPriority, priorities.CalculateNodeAffinityPriorityMap, priorities.CalculateNodeAffinityPriorityReduce, 1)
 

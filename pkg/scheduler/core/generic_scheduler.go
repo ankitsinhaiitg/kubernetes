@@ -779,6 +779,9 @@ func PrioritizeNodes(
 			klog.Infof("Host %s => Score %d", result[i].Host, result[i].Score)
 		}
 	}
+	for i := range result {
+		klog.Infof("Zauba: Pod %s, Host %s => Score %d",pod.Name, result[i].Host, result[i].Score)
+	}
 	return result, nil
 }
 

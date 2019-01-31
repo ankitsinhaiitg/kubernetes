@@ -101,6 +101,7 @@ func registerAlgorithmProvider(predSet, priSet sets.String) {
 	// by specifying flag.
 	factory.RegisterAlgorithmProvider(factory.DefaultProvider, predSet, priSet)
 	// Cluster autoscaler friendly scheduling algorithm.
+	klog.Infof("Registering priorities and predicates.")
 	factory.RegisterAlgorithmProvider(ClusterAutoscalerProvider, predSet,
 		copyAndReplace(priSet, priorities.LeastRequestedPriority, priorities.MostRequestedPriority))
 }

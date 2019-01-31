@@ -49,11 +49,12 @@ func (zpmr ZaubaPriorityMostRequest) ZaubaPriorityMostRequestPriorityMap(
 		for _,pod :=  range nodeInfo.Pods() {
 			if highPrioritySelector.Matches(labels.Set(pod.Labels)) {
 				score = 10;
+				break
 			} else if lowPrioritySelector.Matches(labels.Set(pod.Labels)) {
 				score = 10;
+				break
 			}
 			fmt.Println(allocatableLowPriority,allocatableHighPriority)
-			break
 		}
 	}
 
